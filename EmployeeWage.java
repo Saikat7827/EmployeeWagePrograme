@@ -4,15 +4,27 @@ public class EmployeeWage {
 	public static final int fullTime = 2;
 	public static final int partTime = 1;
 
-	public static void main(String[] args) {
-		System.out.println("Welcome to Employee Wage Computation Problem using Oops concepts");
-		EmployeeWage apple = new EmployeeWage();
-		apple.computeEmpWage("Apple", 25, 22, 100);
-		EmployeeWage samsung = new EmployeeWage();
-		samsung.computeEmpWage("Samsung", 40, 25, 200);
+	private final String company;
+	private final int empRatePerHour;
+	private final int numOfWorkingDays;
+	private final int maxHours;
+	private int totalEmpWage;
+
+	public EmployeeWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHours) {
+		super();
+		this.company = company;
+		this.empRatePerHour = empRatePerHour;
+		this.numOfWorkingDays = numOfWorkingDays;
+		this.maxHours = maxHours;
+	}
+	@Override
+	public String toString() {
+		return "Company Name : " + company + " Employee rate per hour : " + empRatePerHour
+				+ " Number of working Days : " + numOfWorkingDays + " Max working hours per month : " + maxHours
+				+ " Total Employee Wage for company " + company + " is: " + totalEmpWage;
 	}
 
-	public int computeEmpWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHours) {
+	public void computeEmpWage() {
 		
 		int empHrs = 0, totalEmpHrs = 8, totalWorkingDays = 0;
 		
@@ -32,13 +44,17 @@ public class EmployeeWage {
 			}
 			totalEmpHrs += empHrs;
 		}
-		int totalEmpWage = totalEmpHrs * empRatePerHour;
-		System.out.println("Company Name : " + company);
-		System.out.println("Employee rate per hour : " + empRatePerHour);
-		System.out.println("Number of working Days : " + numOfWorkingDays);
-		System.out.println("Max working hours per month : " + maxHours);
-		System.out.println("Total Employee Wage for company " + company + " is: " + totalEmpWage);
-		return totalEmpWage;
+		totalEmpWage = totalEmpHrs * empRatePerHour;
+	}
+
+	public static void main(String[] args) {
+		System.out.println("Welcome to Employee Wage Computation Problem using Oops concepts");
+		EmployeeWage apple = new EmployeeWage("Apple", 25, 22, 100);
+		EmployeeWage samsung = new EmployeeWage("Samsung", 40, 25, 200);
+		apple.computeEmpWage();
+		System.out.println(apple);
+		samsung.computeEmpWage();
+		System.out.println(samsung);
 	}
 
 }
